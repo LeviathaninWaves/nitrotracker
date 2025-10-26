@@ -576,7 +576,7 @@ void volEnvSetInst(Instrument *inst)
 	{
 		u16 *xs, *ys;
 		u16 n = inst->getVolumeEnvelope(&xs, &ys);
-		bool s = inst->getVolumeEnvelopeSustainFlag();
+		bool s = inst->getVolEnvSusEnabled();
 		u8 susp = inst->getVolumeEnvelopeSustainPoint();
 		volenvedit->setZoomAndPos(2, 0);
 		volenvedit->setPoints(xs, ys, n);
@@ -695,7 +695,7 @@ void setSong(Song *newsong)
 	if(inst != 0)
 	{
 		cbvolenvenabled->setChecked(inst->getVolEnvEnabled());
-		cbsusenabled->setChecked(inst->getVolumeEnvelopeSustainFlag());
+		cbsusenabled->setChecked(inst->getVolEnvSusEnabled());
 	}
 
 	updateLabelChannels();
@@ -2774,7 +2774,7 @@ void envSetSustainPoint(void)
 
 	inst->setVolumeEnvelopeSustainPoint((u8)active_point);
 	
-	bool s = inst->getVolumeEnvelopeSustainFlag();
+	bool s = inst->getVolEnvSusEnabled();
 	u8 susp = inst->getVolumeEnvelopeSustainPoint();
 	volenvedit->setEditorSustainParams(s, susp);
 	volenvedit->pleaseDraw();
@@ -2788,7 +2788,7 @@ void envToggleSustainEnabled(bool is_enabled)
   Instrument *inst = song->getInstrument(state->instrument);
 	if(inst != NULL)
 	{
-		inst->toggleVolumeEnvelopeSustain(is_enabled);
+		inst->setVolEnvSusEnabled(is_enabled);
 		volenvedit->toggleSustain(is_enabled);
 		volenvedit->pleaseDraw();
 	}
