@@ -4,3 +4,4 @@
 [submodule "libntxm"]
 	path = libntxm
 	url = https://github.com/LeviathaninWaves/libntxm
+    branch = new
